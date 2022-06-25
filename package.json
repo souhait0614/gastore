@@ -2,7 +2,8 @@
   "name": "gastore",
   "private": true,
   "version": "0.0.0",
-  "types": "./types/index.d.ts",
+  "description": "A reactive store library",
+  "types": "./dist/types/index.d.ts",
   "files": [
     "/dist",
     "/types"
@@ -28,6 +29,7 @@
     "prettier": "^2.7.1",
     "typescript": "^4.5.4",
     "vite": "^2.9.9",
+    "vite-plugin-dts": "^1.2.0",
     "vitest": "^0.16.0"
   }
 }
