@@ -11,6 +11,8 @@ SolidJS と Reactive State に触発された軽量な状態管理ライブラ�
 ## 使い方
 
 ```typescript
+import { createStore } from './createStore'
+
 const str = createStore<string>()
 
 str.subscribe((value) => {
