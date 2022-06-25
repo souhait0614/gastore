@@ -1,15 +1,24 @@
 {
   "name": "gastore",
-  "private": true,
+  "author": "souhait",
   "version": "0.0.0",
+  "license": "MIT",
   "description": "A reactive store library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/souhait0614/gastore"
+  },
   "types": "./dist/types/index.d.ts",
+  "engines": {
+      "node": ">=18.4.0"
+  },
   "files": [
     "/dist",
     "/types"
   ],
   "main": "./dist/gastore.umd.js",
   "module": "./dist/gastore.es.js",
+  "packageManager": "pnpm@7.3.0",
   "exports": {
     "import": "./dist/gastore.es.js",
     "require": "./dist/gastore.umd.js"
