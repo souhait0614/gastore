@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  plugins: ['import', 'unused-imports', '@typescript-eslint', 'jsdoc'],
+  plugins: ['import', 'unused-imports', '@typescript-eslint'],
   extends: ['google', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -27,8 +27,6 @@ module.exports = {
 
     'unused-imports/no-unused-imports': 1,
     'no-unused-vars': [1, { vars: 'all', args: 'after-used' }],
-
-    'jsdoc/require-jsdoc': 0,
 
     '@typescript-eslint/naming-convention': [
       2,
