@@ -1,7 +1,7 @@
 {
   "name": "gastore",
   "author": "souhait",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "description": "A reactive store library",
   "repository": {
@@ -10,7 +10,7 @@
   },
   "types": "./dist/types/index.d.ts",
   "engines": {
-      "node": ">=18.4.0"
+    "node": ">=18.4.0"
   },
   "files": [
     "/dist",
