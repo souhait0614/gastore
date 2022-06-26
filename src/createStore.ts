@@ -1,4 +1,4 @@
-type SubscribeFunction<T> = (value: T | undefined) => void
+type SubscribeFunction<T> = (value: T) => void
 interface SubscribeOptions {
   shouldFirstRun: boolean
 }
@@ -24,6 +24,7 @@ class Store<T extends unknown> {
   }
   update(updateFunc: (prev: T) => T) {
     this.value = updateFunc(this.value)
+    if (this.subscribeFunc) this.subscribeFunc(this.value)
   }
   get() {
     return this.value
