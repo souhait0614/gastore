@@ -18,20 +18,22 @@ class Store<T extends unknown> {
     this.subscribeFunc = execFunc
     if (options.shouldFirstRun) this.subscribeFunc(this.value)
   }
-  set(value: T) {
+  set(value: T): T {
     this.value = value
     if (this.subscribeFunc) this.subscribeFunc(this.value)
+    return this.value
   }
-  update(updateFunc: (prev: T) => T) {
+  update(updateFunc: (prev: T) => T): T {
     this.value = updateFunc(this.value)
     if (this.subscribeFunc) this.subscribeFunc(this.value)
+    return this.value
   }
-  get() {
+  get(): T {
     return this.value
   }
 }
 
-function createStore<T>(value: T) {
+function createStore<T>(value: T): Store<T> {
   return new Store<T>(value)
 }
 
