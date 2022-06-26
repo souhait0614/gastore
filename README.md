@@ -1,6 +1,6 @@
 # Gastore
 
-SolidJS と Reactive State に触発された軽量な状態管理ライブラリ
+SolidJS の Signal と Svelte の Store に触発された軽量な状態管理ライブラリ
 
 ## 使い方
 
