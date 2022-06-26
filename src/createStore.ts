@@ -1,4 +1,4 @@
-type SubscribeFunction<T> = (value: T) => unknown
+type SubscribeFunction<T> = (value: T | undefined) => void
 interface SubscribeOptions {
   shouldFirstRun: boolean
 }
@@ -6,31 +6,31 @@ const defaultSubscribeOptions: SubscribeOptions = {
   shouldFirstRun: false,
 }
 
-class Store<T> {
-  private value: T | undefined = undefined
-  private subscribeFunction: SubscribeFunction<T> | undefined = undefined
+class Store<T extends unknown> {
+  private value: T
+  private subscribeFunc: SubscribeFunction<T> | undefined = undefined
 
-  constructor(value?: T) {
-    if (value !== undefined) this.value = value
+  constructor(value: T) {
+    this.value = value
+  }
+  subscribe(execFunc: SubscribeFunction<T>, options: SubscribeOptions = defaultSubscribeOptions) {
+    options = { ...defaultSubscribeOptions, ...options }
+    this.subscribeFunc = execFunc
+    if (options.shouldFirstRun) this.subscribeFunc(this.value)
+  }
+  set(value: T) {
+    this.value = value
+    if (this.subscribeFunc) this.subscribeFunc(this.value)
+  }
+  update(updateFunc: (prev: T) => T) {
+    this.value = updateFunc(this.value)
   }
   get() {
     return this.value
   }
-  set(value: T) {
-    this.value = value
-    typeof this.subscribeFunction === 'function' && this.subscribeFunction(this.value)
-    return this.value
-  }
-  subscribe(
-    executeFunction: SubscribeFunction<T>,
-    options: Partial<SubscribeOptions> = defaultSubscribeOptions,
-  ) {
-    this.subscribeFunction = executeFunction
-    if (options.shouldFirstRun && this.value !== undefined) this.subscribeFunction(this.value)
-  }
 }
 
-function createStore<T>(value?: T) {
+function createStore<T>(value: T) {
   return new Store<T>(value)
 }
 

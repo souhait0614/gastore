@@ -11,15 +11,27 @@ describe('createStore', () => {
   })
   it('set', () => {
     const values = [str, 0, false, undefined]
-    const targets = values.map(() => createStore())
-    targets.forEach((target, index)=>target.set(values[index]))
+    const targets = values.map(() => createStore<unknown>(undefined))
+    targets.forEach((target, index) => target.set(values[index]))
     expect(targets.map((store) => store.get())).toEqual(values)
   })
-  it('subscribe', () => {
-    const name = createStore<string>()
-    name.subscribe((value) => {
-      expect(value).toBe(str)
-    })
-    name.set(str)
+  it('update', () => {
+    const values = [0, 1, 2, 3, 4]
+    const targets = values.map((value) => createStore(value))
+    targets.forEach((target) => target.update((prev) => prev + 1))
+    expect(targets.map((store) => store.get())).toEqual(values.map((val) => val + 1))
+  })
+  it('subscribe', async () => {
+    const values = [str, 0, false, undefined]
+    const targets = values.map((val) => createStore(val))
+    const result = await Promise.all(
+      targets.map(
+        (target) =>
+          new Promise((resolve) =>
+            target.subscribe((value) => resolve(value), { shouldFirstRun: true }),
+          ),
+      ),
+    )
+    expect(result).toEqual(values)
   })
 })
