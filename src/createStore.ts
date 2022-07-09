@@ -1,12 +1,12 @@
-type SubscribeFunction<T> = (value: T) => void
-interface SubscribeOptions {
+export type SubscribeFunction<T> = (value: T) => void
+export interface SubscribeOptions {
   shouldFirstRun: boolean
 }
 const defaultSubscribeOptions: SubscribeOptions = {
   shouldFirstRun: false,
 }
 
-class Store<T extends unknown> {
+export class Store<T extends unknown> {
   private value: T
   private subscribeFunc: SubscribeFunction<T> | undefined = undefined
 
@@ -33,8 +33,6 @@ class Store<T extends unknown> {
   }
 }
 
-function createStore<T>(value: T): Store<T> {
+export function createStore<T>(value: T): Store<T> {
   return new Store<T>(value)
 }
-
-export { createStore }
