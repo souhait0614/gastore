@@ -1,7 +1,7 @@
 {
   "name": "gastore",
   "author": "souhait",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "MIT",
   "description": "A reactive store library",
   "repository": {
@@ -40,5 +40,8 @@
     "vite": "^2.9.9",
     "vite-plugin-dts": "^1.2.0",
     "vitest": "^0.16.0"
+  },
+  "dependencies": {
+    "gastore": "^0.2.2"
   }
 }
